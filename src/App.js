@@ -24,7 +24,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
 
-          <HnefataflBoard rows={11} cols={11} tiles={tiles} tileSize={50} />
+          <HnefataflBoard rows={11} cols={11} tiles={tiles} tileSize={64} />
 
         </header>
       </div>

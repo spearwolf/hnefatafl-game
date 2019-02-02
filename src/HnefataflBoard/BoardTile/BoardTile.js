@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import ImageLight from './images/feld-hell-5-duester.png';
+import ImageLight from './images/feld-hell-6.png';
 import ImageLightHi from './images/feld-hell-1.png';
 
 import ImageDark0 from './images/feld-dunkel-0-duester.png';
@@ -28,7 +28,7 @@ const backHoverImage = ({ tileType }) => {
   ` : undefined;
 };
 
-const Tile = styled.div`
+const BoardTileStyled = styled.div`
   position: absolute;
 
   top: ${({ row, tileSize }) => row * tileSize}px;
@@ -46,7 +46,7 @@ const Tile = styled.div`
 `;
 
 const BoardTile = ({ row, col, tileSize, tileType }) => (
-  <Tile row={row} col={col} tileSize={tileSize} tileType={tileType} />
+  <BoardTileStyled row={row} col={col} tileSize={tileSize} tileType={tileType} />
 );
 
 export default BoardTile;
