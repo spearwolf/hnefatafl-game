@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import HnefataflBoard from './c/HnefataflBoard/HnefataflBoard';
+import HnefataflBoard from './HnefataflBoard/HnefataflBoard';
 
 import './App.css';
 
