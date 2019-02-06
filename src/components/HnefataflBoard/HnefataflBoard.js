@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import BoardTile from './BoardTile/BoardTile';
+import BoardTile from './BoardTile/BoardTileContainer';
 import VikingPiece from './VikingPiece/VikingPiece';
 
 const TileContainer = styled.div`
@@ -11,12 +11,12 @@ const TileContainer = styled.div`
   height: ${({ fullHeight }) => fullHeight}px;
 `;
 
-const renderTiles = (rows, cols, tiles, tileSize) => {
+const renderTiles = (rows, cols) => {
   const out = [];
   for (let y = 0; y < rows; ++y) {
     for (let x = 0; x < cols; ++x) {
       out.push(
-        <BoardTile row={y} col={x} tileType={tiles[x + (y * cols)]} tileSize={tileSize} key={`${x}|${y}`} />
+        <BoardTile row={y} col={x} key={`${x}|${y}`} />
       );
     }
   }
@@ -27,10 +27,10 @@ const renderPieces = (tileSize) => (
   <VikingPiece pieceType={'king'} tileSize={tileSize} />
 );
 
-const HnefataflBoard = ({ rows, cols, tiles, tileSize }) => (
+const HnefataflBoard = ({ rows, cols, tileSize }) => (
   <TileContainer fullWidth={cols * tileSize} fullHeight={rows * tileSize}>
     {
-      renderTiles(rows, cols, tiles, tileSize)
+      renderTiles(rows, cols)
     }
     {
       renderPieces(tileSize)

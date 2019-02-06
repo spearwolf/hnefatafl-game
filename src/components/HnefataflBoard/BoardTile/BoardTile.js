@@ -1,24 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import ImageLight from './images/feld-hell-6.png';
-import ImageLightHi from './images/feld-hell-1.png';
-
-import ImageDark0 from './images/feld-dunkel-0-duester.png';
-import ImageDark1 from './images/feld-dunkel-1-duester.png';
-import ImageDark2 from './images/feld-dunkel-2-duester.png';
-import ImageDark3 from './images/feld-dunkel-3-duester.png';
-
-const backImage = [
-  [ImageLight, ImageLightHi],
-  [ImageDark0],
-  [ImageDark1],
-  [ImageDark2],
-  [ImageDark3],
-]
-
-const backHoverImage = ({ tileType }) => {
-  const hoverImage = backImage[tileType][1];
+const backHoverImageStyles = ({ backImage }) => {
+  const hoverImage = backImage[1];
   return hoverImage ? css`
 
     &:hover {
@@ -31,8 +15,8 @@ const backHoverImage = ({ tileType }) => {
 const BoardTileStyled = styled.div`
   position: absolute;
 
-  top: ${({ row, tileSize }) => row * tileSize}px;
-  left: ${({ col, tileSize }) => col * tileSize}px;
+  top: ${({ top }) => top}px;
+  left: ${({ left }) => left}px;
 
   width: ${({ tileSize }) => tileSize}px;
   height: ${({ tileSize }) => tileSize}px;
@@ -40,13 +24,18 @@ const BoardTileStyled = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-image: url(${({ tileType }) => backImage[tileType][0]});
+  background-image: url(${({ backImage }) => backImage[0]});
 
-  ${backHoverImage}
+  ${backHoverImageStyles}
 `;
 
-const BoardTile = ({ row, col, tileSize, tileType }) => (
-  <BoardTileStyled row={row} col={col} tileSize={tileSize} tileType={tileType} />
+const BoardTile = ({ row, col, tileSize, tileType, backImages }) => (
+  <BoardTileStyled
+    top={row * tileSize}
+    left={col * tileSize}
+    tileSize={tileSize}
+    backImage={backImages[tileType]}
+  />
 );
 
 export default BoardTile;
