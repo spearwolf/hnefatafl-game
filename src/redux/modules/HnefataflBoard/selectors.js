@@ -6,6 +6,7 @@ export const getRows = state => getState(state).rows;
 export const getCols = state => getState(state).cols;
 
 export const getTiles = state => getState(state).tiles;
+export const getPieces = state => getState(state).pieces;
 
 export const getTileSize = state => getState(state).tileSize;
 

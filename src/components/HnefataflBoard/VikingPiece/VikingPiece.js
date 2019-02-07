@@ -16,13 +16,21 @@ const VikingPieceStyled = styled.div`
   background-image: url(${({ image }) => image});
 `;
 
-const VikingPiece = ({ pieceType, tileSize, pieceLibrary }) => {
+const VikingPiece = ({ pieceType, tileSize, row, col, pieceLibrary }) => {
   const piece = pieceLibrary[pieceType];
   const width = tileSize;
   const height = (piece.height / piece.width) * tileSize;
+  const top = (row * tileSize) + tileSize - height - Math.round(piece.bottomOffset * tileSize);
+  const left = col * tileSize;
 
   return (
-    <VikingPieceStyled top={0} left={0} width={width} height={height} image={piece.image} />
+    <VikingPieceStyled
+      top={top}
+      left={left}
+      width={width}
+      height={height}
+      image={piece.image}
+    />
   );
 };
 

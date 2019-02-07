@@ -23,17 +23,17 @@ const renderTiles = (rows, cols) => {
   return out;
 };
 
-const renderPieces = () => (
-  <VikingPiece pieceType={'king'} />
-);
+const renderPieces = (pieces) => Object.entries(pieces).map(([id, { type, row, col }]) => (
+  <VikingPiece key={id} col={col} row={row} pieceType={type} />
+));
 
-const HnefataflBoard = ({ rows, cols, tileSize }) => (
+const HnefataflBoard = ({ rows, cols, tileSize, pieces }) => (
   <TileContainer fullWidth={cols * tileSize} fullHeight={rows * tileSize}>
     {
       renderTiles(rows, cols)
     }
     {
-      renderPieces()
+      renderPieces(pieces)
     }
   </TileContainer>
 );
