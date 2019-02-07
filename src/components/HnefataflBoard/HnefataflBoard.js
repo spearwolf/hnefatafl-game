@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import BoardTile from './BoardTile/BoardTileContainer';
-import VikingPiece from './VikingPiece/VikingPiece';
+import VikingPiece from './VikingPiece/VikingPieceContainer';
 
 const TileContainer = styled.div`
   position: relative;
@@ -23,8 +23,8 @@ const renderTiles = (rows, cols) => {
   return out;
 };
 
-const renderPieces = (tileSize) => (
-  <VikingPiece pieceType={'king'} tileSize={tileSize} />
+const renderPieces = () => (
+  <VikingPiece pieceType={'king'} />
 );
 
 const HnefataflBoard = ({ rows, cols, tileSize }) => (
@@ -33,7 +33,7 @@ const HnefataflBoard = ({ rows, cols, tileSize }) => (
       renderTiles(rows, cols)
     }
     {
-      renderPieces(tileSize)
+      renderPieces()
     }
   </TileContainer>
 );

@@ -1,16 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ImageRedKing from './images/koenig-pastellrot.png';
-
-const PIECES = {
-  king: {
-    image: ImageRedKing,
-    width: 429,
-    height: 668,
-  },
-};
-
 const VikingPieceStyled = styled.div`
   position: absolute;
 
@@ -26,8 +16,8 @@ const VikingPieceStyled = styled.div`
   background-image: url(${({ image }) => image});
 `;
 
-const VikingPiece = ({ pieceType, tileSize }) => {
-  const piece = PIECES[pieceType];
+const VikingPiece = ({ pieceType, tileSize, pieceLibrary }) => {
+  const piece = pieceLibrary[pieceType];
   const width = tileSize;
   const height = (piece.height / piece.width) * tileSize;
 
