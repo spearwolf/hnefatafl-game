@@ -7,8 +7,8 @@ const VikingPieceStyled = styled.div`
   top: ${({ top }) => top}px;
   left: ${({ left }) => left}px;
 
-  width: ${({ width }) => width}px;
-  height: ${({ height }) => height}px;
+  width: ${({ w }) => w}px;
+  height: ${({ h }) => h}px;
 
   background-repeat: no-repeat;
   background-size: contain;
@@ -20,17 +20,11 @@ const VikingPiece = ({ pieceType, tileSize, row, col, pieceLibrary }) => {
   const piece = pieceLibrary[pieceType];
   const width = tileSize;
   const height = (piece.height / piece.width) * tileSize;
-  const top = (row * tileSize) + tileSize - height - Math.round(piece.bottomOffset * tileSize);
+  const top = Math.round((row * tileSize) + tileSize - height - (piece.bottomOffset * tileSize));
   const left = col * tileSize;
 
   return (
-    <VikingPieceStyled
-      top={top}
-      left={left}
-      width={width}
-      height={height}
-      image={piece.image}
-    />
+    <VikingPieceStyled left={left} top={top} w={width} h={height} image={piece.image} />
   );
 };
 
