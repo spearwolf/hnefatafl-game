@@ -11,31 +11,59 @@ const TileContainer = styled.div`
   height: ${({ fullHeight }) => fullHeight}px;
 `;
 
-const renderTiles = (rows, cols) => {
-  const out = [];
-  for (let y = 0; y < rows; ++y) {
-    for (let x = 0; x < cols; ++x) {
-      out.push(
-        <BoardTile row={y} col={x} key={`${x}|${y}`} />
-      );
+const Layer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+`;
+
+class Tiles extends React.PureComponent {
+
+  renderTiles() {
+    const { rows, cols } = this.props;
+    const out = [];
+    for (let y = 0; y < rows; ++y) {
+      for (let x = 0; x < cols; ++x) {
+        out.push(
+          <BoardTile row={y} col={x} key={`${x}|${y}`} />
+        );
+      }
     }
+    return out;
   }
-  return out;
+
+  render() {
+    return <Layer>{ this.renderTiles() }</Layer>;
+  }
+
+}
+
+class Pieces extends React.PureComponent {
+
+  renderPieces() {
+    return Object.entries(this.props.pieces).map(([id, { type, row, col }]) => (
+      <VikingPiece key={id} col={col} row={row} pieceType={type} />
+    ));
+  }
+
+  render() {
+    return <Layer>{ this.renderPieces() }</Layer>;
+  }
+
+}
+
+const HnefataflBoard = ({ rows, cols, tileSize, pieces }) => {
+  console.log('HnefataflBoard:render!');
+  return (
+    <TileContainer fullWidth={cols * tileSize} fullHeight={rows * tileSize}>
+      <Tiles rows={rows} cols={cols} />
+      <Pieces pieces={pieces} />
+    </TileContainer>
+  );
 };
-
-const renderPieces = (pieces) => Object.entries(pieces).map(([id, { type, row, col }]) => (
-  <VikingPiece key={id} col={col} row={row} pieceType={type} />
-));
-
-const HnefataflBoard = ({ rows, cols, tileSize, pieces }) => (
-  <TileContainer fullWidth={cols * tileSize} fullHeight={rows * tileSize}>
-    {
-      renderTiles(rows, cols)
-    }
-    {
-      renderPieces(pieces)
-    }
-  </TileContainer>
-);
 
 export default HnefataflBoard;

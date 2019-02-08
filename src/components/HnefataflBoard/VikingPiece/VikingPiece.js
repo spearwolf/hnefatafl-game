@@ -10,6 +10,8 @@ const VikingPieceStyled = styled.div`
   width: ${({ w }) => w}px;
   height: ${({ h }) => h}px;
 
+  z-index: ${({ z }) => z};
+
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -24,7 +26,7 @@ const VikingPiece = ({ pieceType, tileSize, row, col, pieceLibrary }) => {
   const left = col * tileSize;
 
   return (
-    <VikingPieceStyled left={left} top={top} w={width} h={height} image={piece.image} />
+    <VikingPieceStyled left={left} top={top} w={width} h={height} z={row} image={piece.image} />
   );
 };
 

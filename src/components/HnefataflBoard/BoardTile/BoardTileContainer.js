@@ -17,7 +17,7 @@ const mapStateToProps = (state, { row, col }) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onClick: () => dispatch(movePiece('third', ownProps.row, ownProps.col)),
+  onTap: () => dispatch(movePiece('third', ownProps.row, ownProps.col)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BoardTile);

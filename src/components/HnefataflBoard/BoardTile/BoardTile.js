@@ -1,6 +1,7 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
+/*
 const backHoverImageStyles = ({ backImage }) => {
   const hoverImage = backImage[1];
   return hoverImage ? css`
@@ -11,6 +12,7 @@ const backHoverImageStyles = ({ backImage }) => {
 
   ` : undefined;
 };
+*/
 
 const BoardTileStyled = styled.div`
   position: absolute;
@@ -26,17 +28,22 @@ const BoardTileStyled = styled.div`
   background-position: center;
   background-image: url(${({ backImage }) => backImage[0]});
 
-  ${backHoverImageStyles}
+  pointer-events: auto;
 `;
 
-const BoardTile = ({ row, col, tileSize, tileType, backImages, onClick }) => (
-  <BoardTileStyled
-    top={row * tileSize}
-    left={col * tileSize}
-    tileSize={tileSize}
-    backImage={backImages[tileType]}
-    onClick={onClick}
-  />
-);
+const BoardTile = ({ row, col, tileSize, tileType, backImages, onTap }) => {
+if (row === 0 && col === 0) {
+  console.log('BoardTile:render!');
+}
+  return (
+    <BoardTileStyled
+      top={row * tileSize}
+      left={col * tileSize}
+      tileSize={tileSize}
+      backImage={backImages[tileType]}
+      onClick={onTap}
+    />
+  );
+};
 
 export default BoardTile;
