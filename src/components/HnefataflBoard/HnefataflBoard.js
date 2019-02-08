@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import BoardTile from './BoardTile/BoardTileContainer';
 import VikingPiece from './VikingPiece/VikingPieceContainer';
 
-const TileContainer = styled.div`
+const ContainerStyled = styled.div`
   position: relative;
 
   width: ${({ fullWidth }) => fullWidth}px;
@@ -57,10 +57,10 @@ class Pieces extends React.PureComponent {
 }
 
 const HnefataflBoard = ({ rows, cols, tileSize, pieces }) => (
-  <TileContainer fullWidth={cols * tileSize} fullHeight={rows * tileSize}>
+  <ContainerStyled fullWidth={cols * tileSize} fullHeight={rows * tileSize}>
     <Tiles rows={rows} cols={cols} />
     <Pieces pieces={pieces} />
-  </TileContainer>
+  </ContainerStyled>
 );
 
 export default HnefataflBoard;
