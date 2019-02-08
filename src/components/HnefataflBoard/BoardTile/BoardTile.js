@@ -29,12 +29,13 @@ const BoardTileStyled = styled.div`
   ${backHoverImageStyles}
 `;
 
-const BoardTile = ({ row, col, tileSize, tileType, backImages }) => (
+const BoardTile = ({ row, col, tileSize, tileType, backImages, onClick }) => (
   <BoardTileStyled
     top={row * tileSize}
     left={col * tileSize}
     tileSize={tileSize}
     backImage={backImages[tileType]}
+    onClick={onClick}
   />
 );
 

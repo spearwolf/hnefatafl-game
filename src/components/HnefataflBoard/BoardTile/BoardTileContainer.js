@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import { getTileSize, getTiles, getCols, getTileBackImages } from '../../../redux/modules/HnefataflBoard/selectors';
+import { movePiece } from '../../../redux/modules/HnefataflBoard/actions';
 
 import BoardTile from './BoardTile';
 
@@ -15,7 +16,8 @@ const mapStateToProps = (state, { row, col }) => {
   };
 };
 
-// const mapDispatchToProps = (dispatch, ownProps) => ({
-// });
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onClick: () => dispatch(movePiece('third', ownProps.row, ownProps.col)),
+});
 
-export default connect(mapStateToProps, null)(BoardTile);
+export default connect(mapStateToProps, mapDispatchToProps)(BoardTile);
