@@ -56,14 +56,11 @@ class Pieces extends React.PureComponent {
 
 }
 
-const HnefataflBoard = ({ rows, cols, tileSize, pieces }) => {
-  console.log('HnefataflBoard:render!');
-  return (
-    <TileContainer fullWidth={cols * tileSize} fullHeight={rows * tileSize}>
-      <Tiles rows={rows} cols={cols} />
-      <Pieces pieces={pieces} />
-    </TileContainer>
-  );
-};
+const HnefataflBoard = ({ rows, cols, tileSize, pieces }) => (
+  <TileContainer fullWidth={cols * tileSize} fullHeight={rows * tileSize}>
+    <Tiles rows={rows} cols={cols} />
+    <Pieces pieces={pieces} />
+  </TileContainer>
+);
 
 export default HnefataflBoard;

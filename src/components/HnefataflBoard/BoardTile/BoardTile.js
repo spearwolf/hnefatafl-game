@@ -31,19 +31,14 @@ const BoardTileStyled = styled.div`
   pointer-events: auto;
 `;
 
-const BoardTile = ({ row, col, tileSize, tileType, backImages, onTap }) => {
-if (row === 0 && col === 0) {
-  console.log('BoardTile:render!');
-}
-  return (
-    <BoardTileStyled
-      top={row * tileSize}
-      left={col * tileSize}
-      tileSize={tileSize}
-      backImage={backImages[tileType]}
-      onClick={onTap}
-    />
-  );
-};
+const BoardTile = ({ row, col, tileSize, tileType, backImages, onTap }) => (
+  <BoardTileStyled
+    top={row * tileSize}
+    left={col * tileSize}
+    tileSize={tileSize}
+    backImage={backImages[tileType]}
+    onClick={onTap}
+  />
+);
 
 export default BoardTile;

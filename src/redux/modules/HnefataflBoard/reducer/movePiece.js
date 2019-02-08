@@ -1,6 +1,6 @@
-export default (state, action) => {
+export default (state, { pieceId, row, col }) => {
 
-  const piece = state.pieces[action.pieceId];
+  const piece = state.pieces[pieceId];
 
   if (piece) {
     return {
@@ -9,11 +9,11 @@ export default (state, action) => {
       pieces: {
         ...state.pieces,
 
-        [action.pieceId]: {
+        [pieceId]: {
           ...piece,
 
-          row: action.row,
-          col: action.col,
+          row,
+          col,
         }
       }
     };

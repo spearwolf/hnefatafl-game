@@ -29,6 +29,8 @@ export default {
     2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
   ],
 
+  currentPiece: null,
+
   pieces: {
     first: {
       type: 'king',
