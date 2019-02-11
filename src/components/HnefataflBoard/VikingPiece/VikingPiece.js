@@ -8,6 +8,7 @@ const VikingPieceStyled = styled.div`
   position: absolute;
 
   pointer-events: auto;
+  cursor: pointer;
 
   top: ${({ top }) => top}px;
   left: ${({ left }) => left}px;
