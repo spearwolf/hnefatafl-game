@@ -18,9 +18,10 @@ const backHoverImageStyles = ({ backImage }) => {
 
 const BoardTileStyled = styled.div`
   position: absolute;
+  top: 0;
+  left: 0;
 
-  top: ${({ top }) => top}px;
-  left: ${({ left }) => left}px;
+  transform: translate(${({ top, left }) => `${left}px, ${top}px`});
 
   width: ${({ tileSize }) => tileSize}px;
   height: ${({ tileSize }) => tileSize}px;

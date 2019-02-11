@@ -6,19 +6,20 @@ import { DRAG_TYPE_PIECE } from '../constants';
 
 const VikingPieceStyled = styled.div`
   position: absolute;
+  top: 0;
+  left: 0;
 
-  pointer-events: auto;
-  cursor: pointer;
-
-  top: ${({ top }) => top}px;
-  left: ${({ left }) => left}px;
+  transform: translate(${({ top, left }) => `${left}px, ${top}px`});
 
   width: ${({ w }) => w}px;
   height: ${({ h }) => h}px;
 
-  z-index: ${({ z, isDragging }) => isDragging ? 1000 : z};
+  z-index: ${({ zIndex, isDragging }) => isDragging ? 1000 : zIndex};
 
   opacity: ${({ isDragging }) => isDragging ? .5 : 1};
+
+  pointer-events: auto;
+  cursor: pointer;
 
   background-repeat: no-repeat;
   background-size: contain;
@@ -45,7 +46,7 @@ const collect = (connect, monitor) => {
 const VikingPiece = ({ pieceType, tileSize, row, col, pieceLibrary, connectDragSource, isDragging }) => {
   const piece = pieceLibrary[pieceType];
   const width = tileSize;
-  const height = (piece.height / piece.width) * tileSize;
+  const height = Math.round((piece.height / piece.width) * tileSize);
   const top = Math.round((row * tileSize) + tileSize - height - (piece.bottomOffset * tileSize));
   const left = col * tileSize;
 
@@ -55,7 +56,7 @@ const VikingPiece = ({ pieceType, tileSize, row, col, pieceLibrary, connectDragS
       isDragging={isDragging}
       image={piece.image}
       left={left} top={top}
-      z={row}
+      zIndex={row}
       w={width} h={height}
     />
   );
