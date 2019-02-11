@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { DragDropContextProvider } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 import BoardTile from './BoardTile/BoardTileContainer';
 import VikingPiece from './VikingPiece/VikingPieceContainer';
@@ -46,7 +48,7 @@ class Pieces extends React.PureComponent {
 
   renderPieces() {
     return Object.entries(this.props.pieces).map(([id, { type, row, col }]) => (
-      <VikingPiece key={id} col={col} row={row} pieceType={type} />
+      <VikingPiece key={id} col={col} row={row} pieceType={type} pieceId={id} />
     ));
   }
 
@@ -57,10 +59,12 @@ class Pieces extends React.PureComponent {
 }
 
 const HnefataflBoard = ({ rows, cols, tileSize, pieces }) => (
-  <ContainerStyled fullWidth={cols * tileSize} fullHeight={rows * tileSize}>
-    <Tiles rows={rows} cols={cols} />
-    <Pieces pieces={pieces} />
-  </ContainerStyled>
+  <DragDropContextProvider backend={HTML5Backend}>
+    <ContainerStyled fullWidth={cols * tileSize} fullHeight={rows * tileSize}>
+      <Tiles rows={rows} cols={cols} />
+      <Pieces pieces={pieces} />
+    </ContainerStyled>
+  </DragDropContextProvider>
 );
 
 export default HnefataflBoard;
