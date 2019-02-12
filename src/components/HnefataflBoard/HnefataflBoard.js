@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { DragDropContextProvider } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+
+import { DragDropContext } from 'react-dnd';
+import TouchBackend from 'react-dnd-touch-backend';
 
 import BoardTile from './BoardTile/BoardTileContainer';
 import VikingPiece from './VikingPiece/VikingPieceContainer';
+import VikingDragPreview from './VikingPiece/VikingDragPreview';
 
 const ContainerStyled = styled.div`
   position: relative;
@@ -59,12 +61,16 @@ class Pieces extends React.PureComponent {
 }
 
 const HnefataflBoard = ({ rows, cols, tileSize, pieces }) => (
-  <DragDropContextProvider backend={HTML5Backend}>
-    <ContainerStyled fullWidth={cols * tileSize} fullHeight={rows * tileSize}>
-      <Tiles rows={rows} cols={cols} />
-      <Pieces pieces={pieces} />
-    </ContainerStyled>
-  </DragDropContextProvider>
+  <ContainerStyled fullWidth={cols * tileSize} fullHeight={rows * tileSize}>
+    <Tiles rows={rows} cols={cols} />
+    <Pieces pieces={pieces} />
+    <Layer>
+      <VikingDragPreview />
+    </Layer>
+  </ContainerStyled>
 );
 
-export default HnefataflBoard;
+export default DragDropContext(TouchBackend({
+  enableMouseEvents: true,
+  ignoreContextMenu: true,
+}))(HnefataflBoard);
